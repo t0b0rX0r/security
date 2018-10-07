@@ -1,5 +1,16 @@
 #!/usr/bin/env python
+#**********************************************
+#For educational purposes ONLY!
+#Author: T0b0rX0r
+#Twitter:@T0b0rX0r
+#Source: https://github.com/t0b0rX0r
+#Application: Kolibri-2.0
+#Exploit: SEH on GET
+#KeyWords:SEH, boofuzz, long jump, badchar in address
+#Fuzzed: 
 # Designed for use with boofuzz v0.0.8
+#**********************************************
+
 from boofuzz import *
 
 def banner(sock):
@@ -21,7 +32,8 @@ def main():
     session = Session(
       session_filename=SESSION_FILENAME,sleep_time=SLEEP_TIME,crash_threshold=CRASH_THRESHOLD,target=Target(
             connection=SocketConnection("192.168.1.178", 8080, proto='tcp')))
- 
+#**********************************************
+# HTTP GET CONNECTION AS SEEN FROM WIRESHARK...for reference in crafting crash
 #GET / HTTP/1.1
 #Host: 192.168.1.178:8080
 #User-Agent: Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0
@@ -30,6 +42,7 @@ def main():
 #Accept-Encoding: gzip, deflate
 #Connection: keep-alive
 #Upgrade-Insecure-Requests: 1
+#**********************************************
 
     s_initialize("get")
     s_static("GET ")
